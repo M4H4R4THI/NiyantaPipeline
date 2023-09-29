@@ -11,8 +11,8 @@ float flow_rate_A;
 float flow_rate_B;
 
 // Declaring Variables for Vibration Sensor Input
-const int vibration_sensor_A_pin = A4;
-
+const int vibration_sensor_A_pin = A3;
+const int vibration_sensor_B_pin = A5;
 
 // Setup Function
 void setup(){
@@ -24,6 +24,8 @@ void setup(){
   digitalWrite(flow_sensor_B_pin, LOW);
 
   pinMode(vibration_sensor_A_pin, INPUT);
+
+  pinMode(vibration_sensor_B_pin, INPUT);
   
 }
 
@@ -38,20 +40,23 @@ void loop(){
   float flow_rate_B = flow_rate_factor * flow_sensor_B_value;
 
   // Sending the value of flow_rate_B to using SerialIO
-  // Serial.print("Flow Rate of Flow Sensor A: ");
-  // Serial.print(flow_rate_A);
-  // Serial.println("L/min");
+  Serial.print("Flow Rate of Flow Sensor A: ");
+  Serial.print(flow_rate_A);
+  Serial.println("L/min");
 
-  // Serial.print("Flow Rate of Flow Sensor B: ");
-  // Serial.print(flow_rate_B);
-  // Serial.print("L/min");
+  Serial.print("Flow Rate of Flow Sensor B: ");
+  Serial.print(flow_rate_B);
+  Serial.print("L/min");
 
   // Reading Analog Value from Vibration Sensors
   int vibration_sensor_A_value = analogRead(vibration_sensor_A_pin);
+  int vibration_sensor_B_value = analogRead(vibration_sensor_B_pin);
 
   Serial.print("Vibration Rate of Vibration Sensor A: ");
-  Serial.print(vibration_sensor_A_value);
+  Serial.println(vibration_sensor_A_value);
 
+  Serial.print("Vibration Rate of Vibration Sensor B: ");
+  Serial.println(vibration_sensor_B_value);
 
   // Declaring delay for 1 second between the readings of sensor values
   delay(1000);
