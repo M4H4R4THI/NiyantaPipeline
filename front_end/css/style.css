@@ -1,11 +1,11 @@
-* {
+/* *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
-#container {
-    width: 1520px;
+.container{
+    width: 1080px;
+    max-width: 1520px;
     height: 1000px;
 }
 
@@ -19,7 +19,7 @@
     width: 100%;
     height: 1000px;
     align-items: center;
-    background-color: aqua;
+    background-color: rgba(128, 128, 128, 0.114);
 }
 
 #logo {
@@ -53,18 +53,17 @@ li {
     grid-template-columns: auto auto auto auto;
     margin-top: 20px;
 }
-
-.master_analytics .box {
-
-    justify-content: space-between;
+.master_analytics .box{
+    
+    justify-content: space-around;
     width: 90%;
     padding: 10px 20px;
     border: 2px solid;
     height: 120px;
     border-radius: 20px;
     border: none;
-
-
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .aa {
@@ -82,52 +81,187 @@ li {
 .dd {
     background-color: rgb(155, 227, 245);
 }
-
-#right-panel {
+.main {
+    height: 100px;
+    background-color: blanchedalmond;
+}
+#right-panel{
     width: 100%;
     height: 1000px;
     background-color: black;
 }
 
-.main {
-    height: auto;
+ */
+
+
+
+.left
+{
+    height: 1000px;
+    background-color: rgba(160, 160, 149, 0.167);
+}
+.logo {
+    border-radius:50%;
+    width: 90%;
+    height: 90px;
+    background-image: url(../images/logo.png);
+    background-size: cover;
+    margin-top: 30px;
+}
+.col-8 .mid
+{
+    width: 100%;
+    height: 1000px;
+    background-color: rgba(167, 167, 156, 0.141);
+}
+.right
+{
+    height: 1000px;
+    background-color:rgba(160, 160, 149, 0.167);
+}
+.menu button i{
+    font-size: 30px!important;
+    color: rgb(107, 249, 249);
+}
+.menu .btn{
+    margin-top: 50px !important;
+}
+.menu button:hover #btn_dashboard{ color: orange!important;
+}
+.menu{
+    margin-top: 50px;
 }
 
-.graph-container {
+.mid{
+    margin-top: 30px !important;
+    align-items: center;
+    justify-content: space-between;
+}
+.master button{
+    margin: 20px 20px 0 0;
+    display: block;
+    width:auto ;
+    height: 120px;
+}
+.mid h1,h4{
+    text-align: left;
+}
+.master button{
+    text-align: left;
+    padding: 0 15px;
+    width: 180px;
+    font-size: 25px;
+    font-weight: bold;
+    border-radius: 15PX!IMPORTANT;
+}
+.master button span{
+    font-size: 23px;
+}
+.menu i{
+    font-size: 60px;
+}
+.aa{
+    background-color: rgba(181, 223, 181, 0.3)!important;
+}
+.bb{
+    background-color: rgb(233, 191, 191,0.3)!important;
+}
+.cc{
+    background-color: rgb(235, 235, 160,0.3)!important;
+}
+.dd{
+    background-color: rgb(155, 227, 245,0.3)!important;
+}
+.display{
+    margin: 20px 0  !important;
     width: 100%;
-    max-width: 800px;
-    height: 400px;
-    border: 1px solid #ccc;
+    height: 350px;
+    background-color: rgb(172, 235, 214,0.3);
+}
+.right-top{
+    padding-top: 40px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    justify-content: space-between;
+}
+.right-top button{
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    font-size: 35px;
+    border-radius: 50%;
+    
 }
 
-.graph {
-    width: 100%;
-    height: 100%;
+.admin button{
+    background-color: black;
+    color: white;
+}
+.notification button{
     border: none;
+    color: gray;
+    position: relative;
 }
-
-#regressionResult {
-    margin-top: 20px;
-    font-size: 16px;
-    color: #05106e;
+.count{
+    font-size: 20px;
+    position: relative;
+    margin: -75px -40px 0 0;
+    color: red;
+    font-weight: bold;
 }
-
-
-
-.pie-chart-container {
-    margin-top: 20px;
-    width: 100%;
-    max-width: 400px;
-    height: 400px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+.right_analysis{
+    padding: 40px 10px;
+}
+.right_analysis_1_layout{
+    
+    display: grid;
+    grid-template-columns: 25% 75%;
+}
+.box{
+    text-align: left;
+    margin-bottom: 20px;
+    height: 300px;
+    width: auto;
     padding: 10px;
-    text-align: center;
+    background-color: rgb(158, 157, 157, 0.4)    ;
+    border-radius: 15px;
 }
-
-.pie-chart {
+.analysis_left div{
+    margin:30px 0;
+}
+.box p{
+    position: relative;
+}
+.box span{
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: -25px;
+    position: absolute;
+}
+.analysis_pie{
+    margin-top: 20px;
     width: 100%;
     height: 100%;
+    background-color: rgba(245, 185, 4, 0.566);
 }
+.analysis_graph{
+    width: 100%;
+    height: 200px;
+    background-color: rgb(192, 227, 216);
+}
+.master .display{
+    display: none;
+    text-align: left;
+    padding: 10px;
+}
+
+#vibration{
+    background-color: aqua;
+}
+#flow{
+    background-color: rgb(17, 0, 255);
+}
+#gps{
+    background-color: rgb(136, 255, 0);
+}
+
