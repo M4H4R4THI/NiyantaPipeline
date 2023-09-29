@@ -12,12 +12,39 @@ TinyGPSPlus gps_module;
 volatile float minutes, seconds;
 volatile int degree, secs, mins;
 
+
+// Declaring factor for flow rate calculation
+const float flow_rate_factor = 5.5;
+
+// Declaring Variables for Flow Sensor Input
+const int flow_sensor_A_pin = A5;
+const int flow_sensor_B_pin = A4;
+
+// Declaring Variables for Flow Rate
+float flow_rate_A;
+float flow_rate_B;
+
+// Declaring Variables for Vibration Sensor Input
+const int vibration_sensor_A_pin = A3;
+const int vibration_sensor_B_pin = A2;
+
 void setup(){
   // For serial communication -  defining baud rate as 9600
   Serial.begin(9600);
 
   // For Software Serial Communication - defining baud rate as 9600
   GPS_SoftSerial.begin(9600);
+
+  //flow sensor
+  pinMode(flow_sensor_A_pin, INPUT);
+  digitalWrite(flow_sensor_A_pin, LOW); 
+
+  pinMode(flow_sensor_B_pin, INPUT);
+  digitalWrite(flow_sensor_B_pin, LOW);
+
+  pinMode(vibration_sensor_A_pin, INPUT);
+
+  pinMode(vibration_sensor_B_pin, INPUT);
 }
 
 void loop(){
@@ -40,6 +67,37 @@ void loop(){
   minute_value = gps_module.time.minute(); // Getting value for minute
   second_value = gps_module.time.second(); // Getting value for second
 
+      //SENSORs
+    // Reading Analog Value from Flow Sensors
+  int flow_sensor_A_value = analogRead(flow_sensor_A_pin);
+  int flow_sensor_B_value = analogRead(flow_sensor_B_pin);
+
+  // Calculation of flow rate for flow sensor A and B [Flow rate = Flow Factor * Q(sensor value)]
+  float flow_rate_A = flow_rate_factor * flow_sensor_A_value;
+  float flow_rate_B = flow_rate_factor * flow_sensor_B_value;
+
+  // Sending the value of flow_rate_B to using SerialIO
+  Serial.print("Flow Rate of Flow Sensor A: ");
+  Serial.print(flow_rate_A);
+  Serial.println("L/min");
+
+  Serial.print("Flow Rate of Flow Sensor B: ");
+  Serial.print(flow_rate_B);
+  Serial.println
+  ("L/min");
+
+  // Reading Analog Value from Vibration Sensors
+  int vibration_sensor_A_value = analogRead(vibration_sensor_A_pin);
+  int vibration_sensor_B_value = analogRead(vibration_sensor_B_pin);
+
+  Serial.print("Vibration Rate of Vibration Sensor A: ");
+  Serial.println(vibration_sensor_A_value);
+
+  Serial.print("Vibration Rate of Vibration Sensor B: ");
+  Serial.println(vibration_sensor_B_value);
+
+  // Declaring delay for 1 second between the readings of sensor values
+  delay(1000);
   time_valid = gps_module.time.isValid(); // Checking whether the value for time data is valid or not
 
   if( !location_valid){
@@ -75,6 +133,8 @@ void loop(){
     Serial.print("\t");
 
     Serial.println(secs);
+
+
   
   }
 
