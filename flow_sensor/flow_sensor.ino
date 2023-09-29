@@ -1,5 +1,5 @@
 volatile int flow_frequency; // It will measures flow sensor's pulse
-float vol = 0.0, l_minute;  // Calculates liters/hour
+float volume = 0.0, l_minute;  // Calculates liters/hour
 unsigned int flowsensor = 2;
 unsigned long currentTime;
 unsigned long cloopTime;
@@ -33,7 +33,7 @@ void loop()
          l_minute = (flow_frequency / 5.5); 
          l_minute = l_minute / 60; 
 
-         vol = vol + l_minute;
+         volume = volume + l_minute;
 
         // Resetting Counter
          flow_frequency = 0; 
