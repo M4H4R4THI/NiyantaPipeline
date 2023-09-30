@@ -5,13 +5,11 @@
 SoftwareSerial GPS_SoftSerial(4, 3);
 /* Rx pin = 4 & Tx pin = 3 with baud rate 9600*/
 
-
 // Creating the object name gps_module using TinyGPSPlus
 TinyGPSPlus gps_module;
 
 volatile float minutes, seconds;
 volatile int degree, secs, mins;
-
 
 // Declaring factor for flow rate calculation
 const float flow_rate_factor = 5.5;
