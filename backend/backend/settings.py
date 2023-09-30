@@ -40,8 +40,7 @@ INSTALLED_APPS = [
     'data_io',
     'channels',
 ]
-# Add this at the bottom of the settings.py file
-ASGI_APPLICATION = "backend.routing.application"
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -72,6 +71,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'backend.wsgi.application'
+# Add this at the bottom of the settings.py file
+ASGI_APPLICATION = "backend.routing.application"
 
 
 # Database
