@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400&display=swap');
+html, body
+{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  min-height: 100vh;
+  background-color: #F4F6F9;
+}
+h3{
+    font-family: 'Ubuntu', sans-serif;
+    color: rgba(14, 131, 136, 1);
+    text-align: center;
+}
