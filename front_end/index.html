@@ -21,9 +21,25 @@
                 <button type="button" id="btn_gps" class="btn"><i class="fas fa-map-marker-alt"></i></button>
               </div>
           </div>
+
+
+
+<!-- -------------------------------------------------------------------------- -->
           <div class="col-8 mid">
-            <h1>overview</h1>
-            <h4>Analytics</h4>
+            <!-- Clock -->
+                <div class="mid_top_layout">
+                    <span>
+                        <h1>overview</h1>
+                        <h4>Analytics</h4>
+                    </span>
+                    <div class="clock">
+                        <div id="clock"></div>
+                        <img src="images/Animated-Flag-Nepal.gif" alt="">
+                    </div>
+                </div>
+
+
+
             <div class="master btn-group" role="group" aria-label="Basic mixed styles example">
                 <button type="button" class="aa btn"><p>Amplitude</p>
                     <span>123 m</span>
@@ -35,12 +51,11 @@
                 <button type="button" class="dd btn "><p>Quantity</p>
                     <span>264 ltr</span></button>
               </div>
-              <div id ="dashboard" class="row display">Dashboards </div>
-              <div id ="vibration" class="row display">VibrationAnalysis </div>
-              <div id ="flow" class="row display">Flow Analysis </div>
-              <div id ="gps" class="row display">GPS Analysis </div>
+              <div id ="dashboard" class="row display"><p>Dashboard</p></div>
+              <div id ="vibration" class="row display"><p>Vibration</p> </div>
+              <div id ="flow" class="row display"><p>Flow Analysis</p></div>
+              <div id ="gps" class="row display"><p>GPS Analysis</p></div>
 
-              
               <div class="row Readings">
                 <h2>READING</h2>
                 <table>
@@ -51,10 +66,14 @@
                 </table>
             </div>
           </div>
+
+
+
+<!-- -------------------------------------------------------------------------- -->
           <div class="col-3 right">
             <div class="right-top">
                 <div class="admin"><button type="button">A</button></div>
-                <div class="notification"><button type="button">N</button>
+                <div class="notification"><button type="button"><i class="fas fa-bell"></i></button>
                 <div class="count">6</div></div>
             </div>
             <div class="right_analysis">
@@ -78,6 +97,22 @@
         </div>
       </div>
       <script>
+
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+
+            const timeString = `${hours}:${minutes}:${seconds}`;
+            document.getElementById('clock').textContent = timeString;
+        }
+
+        // Update the clock every second
+        setInterval(updateClock, 1000);
+
+        // Initial update
+        updateClock();
         
         const divA = document.getElementById("dashboard");
         const divB = document.getElementById("vibration");
@@ -116,6 +151,8 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   </body>
+  
+
 </html>
 
 

@@ -92,8 +92,7 @@ li {
 }
 
  */
-
-
+ 
 
 .left
 {
@@ -119,6 +118,8 @@ li {
     height: 1000px;
     background-color:rgba(160, 160, 149, 0.167);
 }
+.menu .bth_vibration:hover button i{font-size:50px;
+}
 .menu button i{
     font-size: 30px!important;
     color: rgb(107, 249, 249);
@@ -126,8 +127,7 @@ li {
 .menu .btn{
     margin-top: 50px !important;
 }
-.menu button:hover #btn_dashboard{ color: orange!important;
-}
+
 .menu{
     margin-top: 50px;
 }
@@ -160,6 +160,8 @@ li {
 .menu i{
     font-size: 60px;
 }
+.menu button:hover i{color: white!important;
+text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;}
 .aa{
     background-color: rgba(181, 223, 181, 0.3)!important;
 }
@@ -175,8 +177,7 @@ li {
 .display{
     margin: 20px 0  !important;
     width: 100%;
-    height: 350px;
-    background-color: rgb(172, 235, 214,0.3);
+    height: 450px;
 }
 .right-top{
     padding-top: 40px;
@@ -188,10 +189,31 @@ li {
     align-items: center;
     width: 80px;
     height: 80px;
-    font-size: 35px;
+    font-size: 30px;
     border-radius: 50%;
     
 }
+
+.notification button{
+    animation: shake 1s infinite;
+}
+.notification:hover button i {color: tomato!important;}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+  }
+
+
 
 .admin button{
     background-color: black;
@@ -249,19 +271,47 @@ li {
     height: 200px;
     background-color: rgb(192, 227, 216);
 }
-.master .display{
-    display: none;
+.display{
     text-align: left;
+    font-size: 25px!important;
+    display: none;
     padding: 10px;
 }
-
+.display p{
+    
+    text-align: center;
+}
+#dashboard{
+    background-color: rgb(172, 235, 214,0.3);
+}
 #vibration{
-    background-color: aqua;
+    background-color: rgb(172, 235, 214,0.3);
 }
 #flow{
-    background-color: rgb(17, 0, 255);
+    background-color: rgb(172, 235, 214,0.3);
 }
 #gps{
-    background-color: rgb(136, 255, 0);
+    background-color: rgb(172, 235, 214,0.3);
 }
 
+#clock {
+    font-size: 28px;
+    font-family: "Arial", sans-serif;
+    margin-top: 20px;
+
+}
+.mid_top_layout{
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.clock img{
+    width: 40px;
+    height: 30px!important;
+    margin-top: 15px;
+}
+.clock{
+    display: flex;
+    align-items: center;
+    justify-content:space-evenly;
+}
