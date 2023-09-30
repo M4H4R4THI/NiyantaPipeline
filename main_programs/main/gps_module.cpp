@@ -2,7 +2,7 @@
 #include <Arduino.h>
 
 TinyGPSPlus gps_module;
-SoftwareSerial GPS_SoftSerial(4, 3);
+SoftwareSerial GPS_SoftSerial(6, 5);
 
 
 volatile float minutes, seconds;
