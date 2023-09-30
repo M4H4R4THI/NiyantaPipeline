@@ -92,11 +92,15 @@ li {
 }
 
  */
- 
+ *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+ }
 
 .left
 {
-    height: 1000px;
+    height: 150vh;
     background-color: rgba(160, 160, 149, 0.167);
 }
 .logo {
@@ -115,8 +119,9 @@ li {
 }
 .right
 {
-    height: 1000px;
-    background-color:rgba(160, 160, 149, 0.167);
+    height: auto;
+    padding: 0!important;
+    
 }
 .menu .bth_vibration:hover button i{font-size:50px;
 }
@@ -177,7 +182,6 @@ text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6
 .display{
     margin: 20px 0  !important;
     width: 100%;
-    height: 450px;
 }
 .right-top{
     padding-top: 40px;
@@ -187,8 +191,8 @@ text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6
 }
 .right-top button{
     align-items: center;
-    width: 80px;
-    height: 80px;
+    width: 40px;
+    height: 40px;
     font-size: 30px;
     border-radius: 50%;
     
@@ -196,6 +200,7 @@ text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6
 
 .notification button{
     animation: shake 1s infinite;
+    background: none;
 }
 .notification:hover button i {color: tomato!important;}
 
@@ -227,12 +232,12 @@ text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6
 .count{
     font-size: 20px;
     position: relative;
-    margin: -75px -40px 0 0;
+    margin: -55px -40px 0 0;
     color: red;
     font-weight: bold;
 }
 .right_analysis{
-    padding: 40px 10px;
+    padding: 20px 0;
 }
 .right_analysis_1_layout{
     
@@ -245,11 +250,10 @@ text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6
     height: 300px;
     width: auto;
     padding: 10px;
-    background-color: rgb(158, 157, 157, 0.4)    ;
-    border-radius: 15px;
+    background-color:rgba(160, 160, 149, 0.167);    border-radius: 15px;
 }
 .analysis_left div{
-    margin:30px 0;
+    margin-top:30px;
 }
 .box p{
     position: relative;
@@ -266,6 +270,10 @@ text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6
     height: 100%;
     background-color: rgba(245, 185, 4, 0.566);
 }
+.analysis_pie img{
+    width: 100%;
+    height: 100%;
+}
 .analysis_graph{
     width: 100%;
     height: 200px;
@@ -281,9 +289,34 @@ text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6
     
     text-align: center;
 }
-#dashboard{
-    background-color: rgb(172, 235, 214,0.3);
+.display img{
+    width: 100%;
+    height: 100%;
 }
+#gps iframe{
+    width: 100%;
+    height: 100%;
+}
+ #dashboard{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: center;
+    justify-content: space-between;
+ }
+ #dashboard .col {
+    width: 200px;
+    height: 300px;
+    margin: 8px solid  rgb(255, 255, 255);
+    margin-bottom: 20px;
+ }
+ #dashboard iframe{
+    width: 100%;
+    height: 100%;
+ }
+ 
+ 
+ 
+ /*
 #vibration{
     background-color: rgb(172, 235, 214,0.3);
 }
@@ -292,26 +325,68 @@ text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6
 }
 #gps{
     background-color: rgb(172, 235, 214,0.3);
-}
+} */
 
-#clock {
-    font-size: 28px;
+.clock {
+    font-size: 20px;
     font-family: "Arial", sans-serif;
     margin-top: 20px;
-
 }
 .mid_top_layout{
     padding: 0 20px;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
 }
 .clock img{
     width: 40px;
     height: 30px!important;
-    margin-top: 15px;
 }
 .clock{
     display: flex;
     align-items: center;
-    justify-content:space-evenly;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+}
+#status{
+    border-radius: 50%;
+    border: none;
+    height: 20px;
+    width: 20px;
+    background-color: green;
+    margin-right: 450px;
+}
+.analysis_graph iframe{
+    width: 100%;
+    height: 100%;
+}
+footer{
+    padding: 20px 0;
+    background-color: antiquewhite;
+    height: 100%;
+    width: 100%;
+}
+footer .grid {
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+    justify-content: space-between;
+    text-align: center;
+}
+footer .row{
+    align-items: center;
+}
+a{
+    text-decoration: none!important;
+    color: tomato!important;
+}
+ul{
+    text-decoration: none!important;
+    padding: 0!important;
+}
+footer li:hover a{
+    color: skyblue !important; ;
+}
+li{
+    list-style: none;
 }

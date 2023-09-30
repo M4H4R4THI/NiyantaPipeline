@@ -33,8 +33,11 @@
                         <h4>Analytics</h4>
                     </span>
                     <div class="clock">
+                        <div><button type="button"id="status"></button></div>
+                        <div>
                         <div id="clock"></div>
                         <img src="images/Animated-Flag-Nepal.gif" alt="">
+                        </div>
                     </div>
                 </div>
 
@@ -51,10 +54,19 @@
                 <button type="button" class="dd btn "><p>Quantity</p>
                     <span>264 ltr</span></button>
               </div>
-              <div id ="dashboard" class="row display"><p>Dashboard</p></div>
-              <div id ="vibration" class="row display"><p>Vibration</p> </div>
-              <div id ="flow" class="row display"><p>Flow Analysis</p></div>
-              <div id ="gps" class="row display"><p>GPS Analysis</p></div>
+              <div id ="dashboard" class="row display">
+                <div id="masterdisplay" class="row">
+                    <div class="masterdisplay first col"><img src="images/flow.png"></div>
+                    <div class="masterdisplay second col"><img src="images/vibration.jpg"></div>
+                </div>
+                <div class="row">
+                    <div class="masterdisplay third col"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7070.458054911225!2d85.53523099999997!3d27.61742260000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2snp!4v1696081275743!5m2!1sen!2snp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+                    <div class="masterdisplay forth col"><img src="images/linear.png" alt=""></div>
+                </div>
+              </div>
+              <div id ="flow" class="row display"><img src="images/flow.png"></div>
+              <div id ="vibration" class="row display"><img src="images/vibration.jpg"></div>
+              <div id ="gps" class="row display"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7070.458054911225!2d85.53523099999997!3d27.61742260000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2snp!4v1696081275743!5m2!1sen!2snp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
 
               <div class="row Readings">
                 <h2>READING</h2>
@@ -85,17 +97,48 @@
                             <div class="analysis_value2"><p>Duration</p><span>1234</span></div>
                             <div class="analysis_value3"><p>Issue</p><span>10%</span></div>
                         </div>
-                        <div class="analysis_pie">CHART</div>
+                        <div class="analysis_pie">
+                            <img src="images/pie_chart.jpg" alt="piechart">
+                        </div>
                     </div>
                 </div>
                 <div class="box right_analysis_2" >
                     <h2>GPS Track</h2>
-                    <div class="analysis_graph">Map</div>
+                    <div class="analysis_graph"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7070.458054911225!2d85.53523099999997!3d27.61742260000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2snp!4v1696081275743!5m2!1sen!2snp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
                 </div>
             </div>
           </div>
         </div>
       </div>
+      <footer>
+        <div class="container">
+            <div class="grid">
+                <div class="col">
+                    <div class="row">
+                        <h3>niyantaPIPELINE</h3>
+                        <p>Designed and built with all the love in the world by team MahaRati with the help of our contributors.
+                    </div>
+                </div>
+                <div class="col">
+                    <h3>ABOUT</h3>
+                    <ul>
+                        <li><a href="#">Projects</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Award</a></li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h3>Contact US</h3>
+                    <ul>
+                        <li>Dhulikhel, Banepa</li>
+                        <li>info@kathmanduuniversity.com.np</li>
+                        <li>+01-123456789</li>
+                    </ul>
+                </div>
+            </div>
+        
+      </footer>
       <script>
 
         function updateClock() {
