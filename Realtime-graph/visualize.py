@@ -24,7 +24,7 @@ ax.set_xlim(0, 100)
 try:
     while True:
         data = ser.readline().decode().strip()
-        parts = line.split(":")
+        parts = data.split(":")
         if len(parts) == 2:
             variable_name = parts[0].strip()
             variable_value = parts[1].strip()
@@ -33,7 +33,6 @@ try:
                 time_data.append(len(time_data))
                 sensor_data.append(variable_value)
 
-            # Update the plot data
             line.set_data(time_data, sensor_data)
             ax.relim()
             ax.autoscale_view()
