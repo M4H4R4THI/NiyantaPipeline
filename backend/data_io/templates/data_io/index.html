@@ -6,6 +6,81 @@
 <body>
 
 <script>
+    let capturedData = [];
+
+console.log = function (message) {
+    try {
+        const data = JSON.parse(message);
+        capturedData.push(data);
+        processCapturedData(data);
+    } catch (error) {
+        console.error('Error parsing data:', error);
+    }
+};
+
+function processCapturedData(data) {
+    if (data.sensor === 'Flow Rate B') {
+        createGraphForFlowRateB(data);
+    } else if (data.sensor === 'Flow Rate A') {
+        createGraphForFlowRateA(data);
+    } else if (data.sensor === 'Vibration Sensor A') {
+        createGraphForVibrationSensorA(data);
+    } else if (data.sensor === 'Vibration Sensor B') {
+        createGraphForVibrationSensorB(data);
+    }
+}
+
+function createGraph(sensor, data) {
+
+    const canvasId = `${sensor}-chart`;
+    const ctx = document.getElementById(canvasId).getContext('2d');
+    
+    const labels = data.map(item => item.timestamp);
+    const values = data.map(item => item.value);
+
+    new Chart(ctx, {
+        type: 'line', 
+        data: {
+            labels: labels,
+            datasets: [{
+                label: sensor,
+                data: values,
+                borderColor: 'blue', 
+                borderWidth: 2,
+                fill: false,
+            }],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    type: 'time', 
+                    time: {
+                        unit: 'second', 
+                    },
+                },
+            },
+        },
+    });
+}
+
+function createGraphForFlowRateB(data) {
+    createGraph('Flow Rate B', data);
+}
+
+function createGraphForFlowRateA(data) {
+    createGraph('Flow Rate A', data);
+}
+
+function createGraphForVibrationSensorA(data) {
+    createGraph('Vibration Sensor A', data);
+}
+
+function createGraphForVibrationSensorB(data) {
+    createGraph('Vibration Sensor B', data);
+}
+
     const socket = new WebSocket('ws://' + window.location.host + '/ws/sensors/');
 
     socket.onmessage = function(event) {

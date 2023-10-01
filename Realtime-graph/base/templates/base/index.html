@@ -56,8 +56,14 @@
               </div>
               <div id ="dashboard" class="row display">
                 <div id="masterdisplay" class="row">
-                    <div class="masterdisplay first col"><img src="../static/images/flow.png"></div>
-                    <div class="masterdisplay second col"><img src="../static/images/vibration.jpg"></div>
+                    {% comment %} <div class="masterdisplay first col"><img src="../static/images/flow.png"></div> {% endcomment %}
+                    <div class="masterdisplay first col">
+                        <canvas id="FlowRateB-chart" width="400" height="200"></canvas>
+                    </div>
+                    {% comment %} <div class="masterdisplay second col"><img src="../static/images/vibration.jpg"></div> {% endcomment %}
+                    <div class="masterdisplay second col">
+                        <canvas id="VibrationSensorA-chart" width="400" height="200"></canvas>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="masterdisplay third col"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7070.458054911225!2d85.53523099999997!3d27.61742260000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2snp!4v1696081275743!5m2!1sen!2snp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
@@ -192,6 +198,84 @@
 
 
     </script>
+    <script>
+        let capturedData = [];
+
+console.log = function (message) {
+    try {
+        const data = JSON.parse(message);
+        capturedData.push(data);
+        processCapturedData(data);
+    } catch (error) {
+        console.error('Error parsing data:', error);
+    }
+};
+
+function processCapturedData(data) {
+    if (data.sensor === 'Flow Rate B') {
+        createGraphForFlowRateB(data);
+    } else if (data.sensor === 'Flow Rate A') {
+        createGraphForFlowRateA(data);
+    } else if (data.sensor === 'Vibration Sensor A') {
+        createGraphForVibrationSensorA(data);
+    } else if (data.sensor === 'Vibration Sensor B') {
+        createGraphForVibrationSensorB(data);
+    }
+}
+
+function createGraph(sensor, data) {
+
+    const canvasId = `${sensor}-chart`;
+    const ctx = document.getElementById(canvasId).getContext('2d');
+    
+    const labels = data.map(item => item.timestamp);
+    const values = data.map(item => item.value);
+
+    new Chart(ctx, {
+        type: 'line', 
+        data: {
+            labels: labels,
+            datasets: [{
+                label: sensor,
+                data: values,
+                borderColor: 'blue', 
+                borderWidth: 2,
+                fill: false,
+            }],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    type: 'time', 
+                    time: {
+                        unit: 'second', 
+                    },
+                },
+            },
+        },
+    });
+}
+
+function createGraphForFlowRateB(data) {
+    createGraph('Flow Rate B', data);
+}
+
+function createGraphForFlowRateA(data) {
+    createGraph('Flow Rate A', data);
+}
+
+function createGraphForVibrationSensorA(data) {
+    createGraph('Vibration Sensor A', data);
+}
+
+function createGraphForVibrationSensorB(data) {
+    createGraph('Vibration Sensor B', data);
+}
+
+    </script>
+
     <script>function fetchData() {
     fetch('/read_arduino_data/')  // Replace with your actual URL#}
         .then(response => response.json())
