@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sensor Data</title>
+</head>
+<body>
+
+<script>
+    const socket = new WebSocket('ws://' + window.location.host + '/ws/sensors/');
+
+    socket.onmessage = function(event) {
+        const sensorData = JSON.parse(event.data);
+        // Handle the received sensor data and update your UI
+        console.log(sensorData);
+    };
+</script>
+
+</body>
+</html>
