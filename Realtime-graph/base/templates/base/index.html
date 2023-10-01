@@ -58,7 +58,7 @@
                 <div id="masterdisplay" class="row">
                     {% comment %} <div class="masterdisplay first col"><img src="../static/images/flow.png"></div> {% endcomment %}
                     <div class="masterdisplay first col">
-                        <canvas id="FlowRateB-chart" width="400" height="200"></canvas>
+                        <canvas id="VibrationA" width="400" height="200"></canvas>
                     </div>
                     {% comment %} <div class="masterdisplay second col"><img src="../static/images/vibration.jpg"></div> {% endcomment %}
                     <div class="masterdisplay second col">
@@ -143,7 +143,7 @@
                     </ul>
                 </div>
             </div>
-        
+
       </footer>
       <script>
 
@@ -162,7 +162,7 @@
 
         // Initial update
         updateClock();
-        
+
         const divA = document.getElementById("dashboard");
         const divB = document.getElementById("vibration");
         const divC = document.getElementById("flow");
@@ -193,94 +193,125 @@
         showDiv(divA);
 
 
+{#function createGraph(sensor, data) {#}
+{##}
+{#    const canvasId = `${sensor}-chart`;#}
+{#    const ctx = document.getElementById(canvasId).getContext('2d');#}
+{##}
+{#    const labels = data.map(item => item.timestamp);#}
+{#    const values = data.map(item => item.value);#}
+{##}
+{#    new Chart(ctx, {#}
+{#        type: 'line',#}
+{#        data: {#}
+{#            labels: labels,#}
+{#            datasets: [{#}
+{#                label: sensor,#}
+{#                data: values,#}
+{#                borderColor: 'blue',#}
+{#                borderWidth: 2,#}
+{#                fill: false,#}
+{#            }],#}
+{#        },#}
+{#        options: {#}
+{#            responsive: true,#}
+{#            maintainAspectRatio: false,#}
+{#            scales: {#}
+{#                x: {#}
+{#                    type: 'time',#}
+{#                    time: {#}
+{#                        unit: 'second',#}
+{#                    },#}
+{#                },#}
+{#            },#}
+{#        },#}
+{#    });#}
+{#}#}
 
+    let data = [];
 
-
-
-    </script>
-    <script>
-        let capturedData = [];
-
-console.log = function (message) {
-    try {
-        const data = JSON.parse(message);
-        capturedData.push(data);
-        processCapturedData(data);
-    } catch (error) {
-        console.error('Error parsing data:', error);
-    }
-};
-
-function processCapturedData(data) {
-    if (data.sensor === 'Flow Rate B') {
-        createGraphForFlowRateB(data);
-    } else if (data.sensor === 'Flow Rate A') {
-        createGraphForFlowRateA(data);
-    } else if (data.sensor === 'Vibration Sensor A') {
-        createGraphForVibrationSensorA(data);
-    } else if (data.sensor === 'Vibration Sensor B') {
-        createGraphForVibrationSensorB(data);
-    }
-}
-
-function createGraph(sensor, data) {
-
-    const canvasId = `${sensor}-chart`;
-    const ctx = document.getElementById(canvasId).getContext('2d');
-    
-    const labels = data.map(item => item.timestamp);
-    const values = data.map(item => item.value);
-
-    new Chart(ctx, {
-        type: 'line', 
-        data: {
-            labels: labels,
-            datasets: [{
-                label: sensor,
-                data: values,
-                borderColor: 'blue', 
-                borderWidth: 2,
-                fill: false,
-            }],
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                x: {
-                    type: 'time', 
-                    time: {
-                        unit: 'second', 
+        // Create a line chart
+        let ctx = document.getElementById('VibrationA').getContext('2d');
+        let myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Value',
+                    data: data,
+                    borderColor: 'blue',
+                    borderWidth: 2,
+                    fill: false,
+                }],
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        type: 'time',
+                        time: {
+                            unit: 'second', // Set the time unit (e.g., 'second', 'minute', 'hour', etc.)
+                        },
                     },
                 },
             },
-        },
-    });
+        });
+
+        // Function to add new data point to the chart
+        function addDataPoint(timestamp, value) {
+            // Add the new data point
+            data.push({ x: timestamp, y: value });
+
+            // Limit the number of data points to display (adjust as needed)
+            if (data.length > 20) {
+                data.shift(); // Remove the oldest data point
+            }
+
+            // Update the chart
+            myChart.update();
+        }
+
+
+function processCapturedData(data) {
+    let key = Object.keys(data)[0];
+    let value = data[key];
+
+    console.log({key}, {value})
+
+    if (key === "Flow Rate A") {
+        {#createFlowAGraph(value);#}
+    }
+    else if (key === "Flow Rate B") {
+        {#createFlowBGraph(value);#}
+    }
+    else if (key === "Vibration Sensor A") {
+        let timestamp = new Date();
+        addDataPoint(timestamp, value)
+    }
+    else if (key === "Vibration Sensor B") {
+        {#createVibBGraph(value);#}
+    }
+    else {
+        if (key === "Latitude value") {
+            {#displayLatitude(value);#}
+        }
+        if (key === "Longitude value") {
+            {#displayLongitude(value);#}
+        }
+        else {
+            {#displayAltitude(value);#}
+        }
+    }
 }
 
-function createGraphForFlowRateB(data) {
-    createGraph('Flow Rate B', data);
-}
-
-function createGraphForFlowRateA(data) {
-    createGraph('Flow Rate A', data);
-}
-
-function createGraphForVibrationSensorA(data) {
-    createGraph('Vibration Sensor A', data);
-}
-
-function createGraphForVibrationSensorB(data) {
-    createGraph('Vibration Sensor B', data);
-}
-
-    </script>
-
-    <script>function fetchData() {
-    fetch('/read_arduino_data/')  // Replace with your actual URL#}
+    function fetchData() {
+    fetch('/read_arduino_data/')  // Replace with your actual URL
         .then(response => response.json())
         .then(data => {
             console.log('Received data from server:', data);
+            console.log(data[0])
+            processCapturedData(data);
         })
         .catch(error => {
             console.error('Error fetching data:', error);
@@ -288,7 +319,29 @@ function createGraphForVibrationSensorB(data) {
 }
 
 // Fetch data every 5 seconds (adjust the interval as needed)
-setInterval(fetchData, 5000);</script>
+setInterval(fetchData, 5000);
+
+        {
+
+
+            function createGraphForFlowRateB(data) {
+                createGraph('Flow Rate B', data);
+            }
+
+            function createGraphForFlowRateA(data) {
+                createGraph('Flow Rate A', data);
+            }
+
+            function createGraphForVibrationSensorA(data) {
+                createGraph('Vibration Sensor A', data);
+            }
+
+            function createGraphForVibrationSensorB(data) {
+                createGraph('Vibration Sensor B', data);
+            }
+        }
+
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   </body>
 </html>
@@ -320,7 +373,7 @@ setInterval(fetchData, 5000);</script>
 
 
 
-<!-- 
+<!--
 
 
 
@@ -329,7 +382,7 @@ setInterval(fetchData, 5000);</script>
 <html lang="en">
   <head>
     <link rel="stylesheet" href="../css/style.css">
-  
+
   <script src="https://kit.fontawesome.com/41f07e5f99.js" crossorigin="anonymous"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -362,7 +415,7 @@ setInterval(fetchData, 5000);</script>
                 <div class="aa box">Record A</div>
                 <div class="bb box">Record B</div>
                 <div class="cc box">Record C</div>
-                <div class="dd box">Record D</div> 
+                <div class="dd box">Record D</div>
                 </div>
 <<<<<<< HEAD
                 <section class="main">
@@ -405,7 +458,7 @@ setInterval(fetchData, 5000);</script>
             </section>
         </section>
 =======
-                
+
                 <section class="main">
                     a
                 </section>

@@ -10,7 +10,7 @@ def index(request):
     return render(request, 'base/index.html')
 
 
-# arduino = serial.Serial('COM6', 9600)
+arduino = serial.Serial('/dev/ttyUSB0', 9600)
 
 
 def read_sensor_data(request):
